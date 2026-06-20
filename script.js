@@ -28,7 +28,6 @@ function registerEvent(eventName){
 // =========================
 // GEOLOCATION API
 // =========================
-
 function getLocation(){
 
     if(navigator.geolocation){
@@ -39,34 +38,54 @@ function getLocation(){
 
                 document.getElementById("location").innerHTML =
 
-                "📍 Latitude: " +
-                position.coords.latitude +
+                `
+                <h3>Your Current Location</h3>
 
-                "<br><br>" +
+                <p>
+                    Latitude: ${position.coords.latitude}
+                    <br><br>
+                    Longitude: ${position.coords.longitude}
+                </p>
 
-                "📍 Longitude: " +
-                position.coords.longitude;
+                <br>
+
+                <p>
+                    Suggested Nearby Cafe:
+                    <strong>The Roastery</strong>
+                </p>
+                `;
 
             },
 
-            function(){
+            function(error){
 
-                alert("Location access denied.");
+                document.getElementById("location").innerHTML =
+
+                `
+                <h3>Location Permission Denied</h3>
+
+                <p>
+                    Please allow location access in your browser settings
+                    and try again.
+                </p>
+                `;
 
             }
 
         );
 
     }
-
     else{
 
-        alert("Geolocation not supported.");
+        document.getElementById("location").innerHTML =
+
+        `
+        Geolocation is not supported by this browser.
+        `;
 
     }
 
 }
-
 // =========================
 // SIGNUP VALIDATION
 // =========================

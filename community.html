@@ -1,152 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-
-<meta charset="UTF-8">
-
-<title>Community | CafeHub</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community | CafeHub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
 
-<h2>CafeHub</h2>
+    <h2>CafeHub</h2>
 
-<nav>
-
-<a href="index.html">Home</a>
-<a href="events.html">Events</a>
-<a href="meetups.html">Meetups</a>
-<a href="bookclubs.html">Book Clubs</a>
-<a href="workshops.html">Workshops</a>
-<a href="community.html">Community</a>
-<a href="signin.html">Sign In</a>
-<a href="signup.html">Sign Up</a>
-
-</nav>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="meetups.html">Meetups</a>
+        <a href="bookclubs.html">Book Clubs</a>
+        <a href="workshops.html">Workshops</a>
+        <a href="community.html">Community</a>
+        <a href="signin.html">Sign In</a>
+        <a href="signup.html">Sign Up</a>
+    </nav>
 
 </header>
 
-<section class="hero">
+<main>
 
-<h1>Join Our Community</h1>
+    <section class="hero">
 
-<p>
+        <h1>Join Our Community</h1>
 
-Connect with students, readers,
-developers, entrepreneurs and creators
-across the city.
+        <p>
+            Connect with students, readers, developers,
+            entrepreneurs and creators across the city.
+        </p>
 
-</p>
+        <button onclick="getLocation()">
+            Find Cafes Near Me
+        </button>
 
-<button onclick="getLocation()">
+    </section>
 
-Find Cafes Near Me
+    <section style="padding:50px;">
 
-</button>
+        <h2 style="text-align:center;margin-bottom:30px;">
+            Why Join CafeHub?
+        </h2>
 
-</section>
+        <div class="grid">
 
-<section>
+            <div class="card">
 
-<h2 style="text-align:center;padding-top:50px;">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80">
 
-Our Community
+                <div class="card-content">
 
-</h2>
+                    <h3>52,000+ Members</h3>
 
-<div class="grid">
+                    <p>
+                        Students, freelancers,
+                        professionals and creators.
+                    </p>
 
-<div class="card">
+                </div>
 
-<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80">
+            </div>
 
-<div class="card-content">
+            <div class="card">
 
-<h3>52,000+ Members</h3>
+                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80">
 
-<p>
+                <div class="card-content">
 
-Students, freelancers,
-professionals and creators.
+                    <h3>Weekly Meetups</h3>
 
-</p>
+                    <p>
+                        Networking events, coding sessions,
+                        startup discussions and book clubs.
+                    </p>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-<div class="card">
+            <div class="card">
 
-<img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80">
+                <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=800&q=80">
 
-<div class="card-content">
+                <div class="card-content">
 
-<h3>Weekly Meetups</h3>
+                    <h3>Host Events</h3>
 
-<p>
+                    <p>
+                        Organize your own workshop,
+                        meetup or reading session.
+                    </p>
 
-Meet like-minded people
-through networking sessions.
+                </div>
 
-</p>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </section>
 
-<div class="card">
+    <section style="padding:50px;text-align:center;">
 
-<img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=800&q=80">
+        <h2>Nearby Cafe Finder</h2>
 
-<div class="card-content">
+        <p style="margin-top:10px;">
+            Demonstration of the HTML5 Geolocation API
+        </p>
 
-<h3>Host Your Event</h3>
+        <div
+            id="location"
+            style="
+                max-width:600px;
+                margin:30px auto;
+                background:white;
+                padding:20px;
+                border-radius:15px;
+                box-shadow:0 4px 12px rgba(0,0,0,.1);
+            "
+        >
 
-<p>
+            Click "Find Cafes Near Me" to get your location.
 
-Create workshops,
-book clubs and coding sessions.
+        </div>
 
-</p>
+    </section>
 
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section style="text-align:center;padding:50px;">
-
-<h2>Nearby Cafe Finder</h2>
-
-<p>
-
-Using HTML5 Geolocation API
-
-</p>
-
-<div id="location"
-style="
-margin-top:20px;
-font-size:18px;
-font-weight:bold;
-color:#6B4426;
-">
-</div>
-
-</section>
+</main>
 
 <footer>
 
-© 2026 CafeHub
+    © 2026 CafeHub
 
 </footer>
 
