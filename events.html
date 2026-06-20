@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>Events | CafeHub</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h2>CafeHub</h2>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="events.html">Events</a>
+<a href="meetups.html">Meetups</a>
+<a href="bookclubs.html">Book Clubs</a>
+<a href="workshops.html">Workshops</a>
+<a href="community.html">Community</a>
+<a href="signin.html">Sign In</a>
+<a href="signup.html">Sign Up</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Upcoming Events</h1>
+
+<p>
+
+Join coding sessions, networking events,
+startup meetups and creative workshops.
+
+</p>
+
+</section>
+
+<h2 style="text-align:center;padding:40px 0;">
+
+Featured Events
+
+</h2>
+
+<!-- FLEXBOX SECTION -->
+
+<section
+style="
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+padding:30px;
+">
+
+<div class="card" style="width:350px;">
+
+<img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80">
+
+<div class="card-content">
+
+<h3>React & Coffee Meetup</h3>
+
+<p>
+
+📍 The Roastery
+
+<br>
+
+🗓 June 24
+
+<br>
+
+👥 25 Seats
+
+</p>
+
+<button
+onclick="registerEvent('React & Coffee Meetup')">
+
+Join Event
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card" style="width:350px;">
+
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80">
+
+<div class="card-content">
+
+<h3>Women In Tech</h3>
+
+<p>
+
+📍 Volt Cafe
+
+<br>
+
+🗓 June 28
+
+<br>
+
+👥 30 Seats
+
+</p>
+
+<button
+onclick="registerEvent('Women In Tech')">
+
+Join Event
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card" style="width:350px;">
+
+<img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80">
+
+<div class="card-content">
+
+<h3>Startup Networking Night</h3>
+
+<p>
+
+📍 Grounds & Goals
+
+<br>
+
+🗓 July 3
+
+<br>
+
+👥 50 Seats
+
+</p>
+
+<button
+onclick="registerEvent('Startup Networking Night')">
+
+Join Event
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<div id="eventModal" class="modal">
+
+<div class="modal-content">
+
+<h2 id="modalTitle">
+
+Registration Complete
+
+</h2>
+
+<p id="modalText">
+
+Thank you.
+
+</p>
+
+<button onclick="closeModal()">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 CafeHub
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
