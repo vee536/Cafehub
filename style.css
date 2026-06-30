@@ -19,10 +19,15 @@ header{
     top:0;
     z-index:1000;
     background:#E8DCC5;
-    padding:15px 40px;
+    padding:15px 30px;
+
     display:flex;
-    justify-content:space-between;
+    flex-direction:column;
+
     align-items:center;
+
+    gap:15px;
+
     border-bottom:1px solid #CBB9A3;
 }
 
@@ -32,8 +37,21 @@ header h2{
 }
 
 nav{
-    display:flex;
-    gap:20px;
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:18px;
+
+}
+
+nav a{
+
+white-space:nowrap;
+
 }
 
 nav a{
@@ -50,7 +68,7 @@ nav a:hover{
 /* HERO */
 
 .hero{
-    height:80vh;
+    min-height:80vh;
     background:
     linear-gradient(rgba(44,36,22,.6),
     rgba(44,36,22,.6)),
@@ -67,7 +85,7 @@ nav a:hover{
 }
 
 .hero h1{
-    font-size:60px;
+    font-size:54px;
     font-family:'Playfair Display',serif;
 }
 
@@ -210,4 +228,140 @@ nav{
 
 html{
     scroll-behavior:smooth;
+}
+
+/* ---------------- REGISTRATION PAGE ---------------- */
+
+.registration-page{
+
+    background:#F4E7D4;
+
+    display:block;
+
+}
+
+.registration-page .container{
+
+    background:white;
+
+    width:450px;
+
+    margin:50px auto;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.registration-page h1{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    color:#5C4033;
+
+}
+
+.registration-page label{
+
+    display:block;
+
+    margin-top:15px;
+
+    font-weight:bold;
+
+}
+
+.registration-page input,
+
+.registration-page select{
+
+    width:100%;
+
+    padding:10px;
+
+    margin-top:8px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+}
+
+.registration-page button{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:12px;
+
+    background:#6B4423;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.registration-page button:hover{
+
+    background:#4B2E2E;
+
+}
+
+#cardContainer{
+
+    margin-top:30px;
+
+}
+
+#cardContainer .card{
+
+    background:#FFF8F2;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+#cardContainer img{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    display:block;
+
+    margin:auto;
+
+    margin-bottom:15px;
+
+}
+
+@media(max-width:500px){
+
+.registration-page .container{
+
+width:95%;
+
+}
+
 }
