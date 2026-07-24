@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Cafe CRUD</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+<header>
+
+<h2>CafeHub</h2>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="events.html">Events</a>
+<a href="meetups.html">Meetups</a>
+<a href="bookclubs.html">Book Clubs</a>
+<a href="workshops.html">Workshops</a>
+<a href="community.html">Community</a>
+<a href="registration.html">Registration</a>
+<a href="crud.html">CRUD</a>
+<a href="signin.html">Sign In</a>
+<a href="signup.html">Sign Up</a>
+
+</nav>
+
+</header>
+
+<h1 class="text-3xl font-bold text-center mb-8 text-brown-700">
+
+CafeHub - Cafe Manager
+
+</h1>
+
+
+<div class="bg-white p-6 rounded-lg shadow w-full max-w-md mx-auto">
+
+<form id="cafeForm">
+
+<input
+type="text"
+id="cafe"
+placeholder="Cafe Name"
+class="border w-full p-2 rounded mb-3">
+
+<input
+type="text"
+id="location"
+placeholder="Location"
+class="border w-full p-2 rounded mb-3">
+
+<input
+type="text"
+id="speciality"
+placeholder="Speciality"
+class="border w-full p-2 rounded mb-3">
+
+<button
+class="bg-amber-700 text-white w-full p-2 rounded">
+
+Save Cafe
+
+</button>
+
+</form>
+
+</div>
+
+<div class="bg-white shadow rounded-lg p-5 max-w-md mx-auto mt-8">
+
+<h2 class="font-bold text-xl mb-4">
+
+Cafe List
+
+</h2>
+
+<ul id="cafeList"></ul>
+
+</div>
+
+<script>
+
+let cafes=[];
+
+const form=document.getElementById("cafeForm");
+
+const cafe=document.getElementById("cafe");
+
+const location=document.getElementById("location");
+
+const speciality=document.getElementById("speciality");
+
+const list=document.getElementById("cafeList");
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+if(cafe.value==""||location.value==""||speciality.value==""){
+
+alert("Fill all details");
+
+return;
+
+}
+
+let obj={
+
+id:Date.now(),
+
+cafe:cafe.value,
+
+location:location.value,
+
+speciality:speciality.value
+
+};
+
+cafes.push(obj);
+
+display();
+
+form.reset();
+
+});
+
+function display(){
+
+list.innerHTML="";
+
+cafes.forEach(function(item){
+
+list.innerHTML+=`
+
+<li class="border-b py-3 flex justify-between">
+
+<div>
+
+<b>${item.cafe}</b><br>
+
+${item.location}<br>
+
+${item.speciality}
+
+</div>
+
+<div>
+
+<button
+
+onclick="editCafe(${item.id})"
+
+class="bg-yellow-400 px-2 rounded">
+
+Edit
+
+</button>
+
+<button
+
+onclick="deleteCafe(${item.id})"
+
+class="bg-red-500 text-white px-2 rounded">
+
+Delete
+
+</button>
+
+</div>
+
+</li>
+
+`;
+
+});
+
+}
+
+function editCafe(id){
+
+let selected=cafes.find(c=>c.id===id);
+
+cafe.value=selected.cafe;
+
+location.value=selected.location;
+
+speciality.value=selected.speciality;
+
+cafes=cafes.filter(c=>c.id!==id);
+
+display();
+
+}
+
+function deleteCafe(id){
+
+cafes=cafes.filter(c=>c.id!==id);
+
+display();
+
+}
+
+</script>
+
+</body>
+</html>
