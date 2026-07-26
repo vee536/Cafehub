@@ -8,32 +8,12 @@
 content="width=device-width, initial-scale=1.0">
 
 <title>Cafe CRUD</title>
-
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
 <body>
-<header>
-
-<h2>CafeHub</h2>
-
-<nav>
-
-<a href="index.html">Home</a>
-<a href="events.html">Events</a>
-<a href="meetups.html">Meetups</a>
-<a href="bookclubs.html">Book Clubs</a>
-<a href="workshops.html">Workshops</a>
-<a href="community.html">Community</a>
-<a href="registration.html">Registration</a>
-<a href="crud.html">CRUD</a>
-<a href="signin.html">Sign In</a>
-<a href="signup.html">Sign Up</a>
-
-</nav>
-
-</header>
 
 <h1 class="text-3xl font-bold text-center mb-8 text-brown-700">
 
@@ -87,9 +67,7 @@ Cafe List
 
 </div>
 
-<script>
-
-let cafes=[];
+<!-- <script>
 
 const form=document.getElementById("cafeForm");
 
@@ -209,7 +187,188 @@ display();
 
 }
 
-</script>
+</script> -->
+<script>
 
+const form = document.getElementById("cafeForm");
+const cafe = document.getElementById("cafe");
+const location = document.getElementById("location");
+const speciality = document.getElementById("speciality");
+const list = document.getElementById("cafeList");
+
+let editId = null;
+
+// Load Cafes
+async function loadCafes(){
+
+    try{
+
+        const response = await axios.get("http://localhost:3000/api/cafes");
+
+        display(response.data);
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+    }
+
+}
+
+loadCafes();
+
+
+// Save / Update Cafe
+form.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    if(cafe.value=="" || location.value=="" || speciality.value==""){
+
+        alert("Fill all details");
+
+        return;
+
+    }
+
+    const obj={
+
+        name:cafe.value,
+
+        location:location.value,
+
+        event:speciality.value,
+
+        rating:4.5
+
+    };
+
+    try{
+
+        if(editId==null){
+
+            await axios.post("http://localhost:3000/api/cafes",obj);
+
+        }
+
+        else{
+
+            await axios.put(
+
+                "http://localhost:3000/api/cafes/"+editId,
+
+                obj
+
+            );
+
+            editId=null;
+
+        }
+
+        form.reset();
+
+        loadCafes();
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+    }
+
+});
+
+
+// Display Cafes
+function display(cafes){
+
+    list.innerHTML="";
+
+    cafes.forEach(function(item){
+
+        list.innerHTML+=`
+
+        <li class="border-b py-3 flex justify-between">
+
+            <div>
+
+                <b>${item.name}</b><br>
+
+                ${item.location}<br>
+
+                ${item.event}
+
+            </div>
+
+            <div>
+
+                <button
+                onclick="editCafe('${item._id}')"
+                class="bg-yellow-400 px-2 rounded">
+
+                Edit
+
+                </button>
+
+                <button
+                onclick="deleteCafe('${item._id}')"
+                class="bg-red-500 text-white px-2 rounded">
+
+                Delete
+
+                </button>
+
+            </div>
+
+        </li>
+
+        `;
+
+    });
+
+}
+
+
+// Edit Cafe
+async function editCafe(id){
+
+    const response = await axios.get("http://localhost:3000/api/cafes");
+
+    const cafes = response.data;
+
+    const selected = cafes.find(c=>c._id===id);
+
+    cafe.value = selected.name;
+
+    location.value = selected.location;
+
+    speciality.value = selected.event;
+
+    editId = id;
+
+}
+
+
+// Delete Cafe
+async function deleteCafe(id){
+
+    if(confirm("Delete this cafe?")){
+
+        await axios.delete(
+
+            "http://localhost:3000/api/cafes/"+id
+
+        );
+
+        loadCafes();
+
+    }
+
+}
+
+</script>
 </body>
 </html>

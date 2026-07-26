@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "The Roastery",
+    "location": "Koramangala",
+    "event": "Coding Meetup",
+    "rating": 4.8
+  },
+  {
+    "id": 2,
+    "name": "Third Wave Coffee",
+    "location": "Indiranagar",
+    "event": "Book Club",
+    "rating": 4.7
+  },
+  {
+    "id": 3,
+    "name": "Dialogues Cafe",
+    "location": "JP Nagar",
+    "event": "Startup Networking",
+    "rating": 4.6
+  },
+  {
+    "id": 4,
+    "name": "Cafe Azzure",
+    "location": "Jayanagar",
+    "event": "AI Workshop",
+    "rating": 4.5
+  },
+  {
+    "id": 5,
+    "name": "Cafe Terra",
+    "location": "HSR Layout",
+    "event": "Open Mic Night",
+    "rating": 4.4
+  }
+]
