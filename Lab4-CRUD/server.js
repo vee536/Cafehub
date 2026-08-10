@@ -6,59 +6,127 @@ const Cafe = require("./models/Cafe");
 
 const app = express();
 
-// Middleware
+
+// ================================
+// MIDDLEWARE
+// ================================
+
 app.use(cors());
+
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 
-// Serve HTML, CSS and JS files
 app.use(express.static(__dirname));
 
-// MongoDB Connection
+
+// ================================
+// MONGODB CONNECTION
+// ================================
+
 mongoose.connect("mongodb://127.0.0.1:27017/cafehub")
-.then(() => {
-    console.log("MongoDB Connected");
-})
-.catch((err) => {
-    console.log(err);
-});
+    .then(() => {
 
-// Home Page
+        console.log("MongoDB Connected");
+
+    })
+    .catch((err) => {
+
+        console.log(err);
+
+    });
+
+
+// ================================
+// HOME PAGE
+// ================================
+
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
-});
 
-/* ---------------- API ---------------- */
-// GET
-app.get("/api/cafes", async (req,res)=>{
-
-    const cafes = await Cafe.find();
-
-    res.json(cafes);
+    res.sendFile(
+        path.join(__dirname, "crud.html")
+    );
 
 });
 
-// POST
-app.post("/api/cafes", async (req,res)=>{
 
-    const cafe = new Cafe(req.body);
+// ================================
+// GET - READ
+// ================================
 
-    await cafe.save();
+app.get("/api/cafes", async (req, res, next) => {
 
-    res.json(cafe);
+    try {
+
+        const { location, event } = req.query;
+
+        let filter = {};
+
+        if (location) {
+
+            filter.location = {
+                $regex: location,
+                $options: "i"
+            };
+
+        }
+
+        if (event) {
+
+            filter.event = {
+                $regex: event,
+                $options: "i"
+            };
+
+        }
+
+        const cafes = await Cafe.find(filter);
+
+        res.json(cafes);
+
+    }
+
+    catch (err) {
+
+        next(err);
+
+    }
 
 });
 
-const PORT = 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+// ================================
+// POST - CREATE
+// ================================
+
+app.post("/api/cafes", async (req, res, next) => {
+
+    try {
+
+        const cafe = new Cafe(req.body);
+
+        await cafe.save();
+
+        res.status(201).json(cafe);
+
+    }
+
+    catch (err) {
+
+        next(err);
+
+    }
+
 });
 
-// UPDATE Cafe
-app.put("/api/cafes/:id", async (req, res) => {
 
-    try{
+// ================================
+// PUT - UPDATE
+// ================================
+
+app.put("/api/cafes/:id", async (req, res, next) => {
+
+    try {
 
         const cafe = await Cafe.findByIdAndUpdate(
 
@@ -66,37 +134,107 @@ app.put("/api/cafes/:id", async (req, res) => {
 
             req.body,
 
-            { new: true }
+            {
+                new: true,
+                runValidators: true
+            }
 
         );
+
+
+        if (!cafe) {
+
+            return res.status(404).json({
+
+                message: "Cafe not found"
+
+            });
+
+        }
+
 
         res.json(cafe);
 
     }
 
-    catch(err){
+    catch (err) {
 
-        res.status(500).json({ message: err.message });
+        next(err);
 
     }
 
 });
 
-// DELETE Cafe
-app.delete("/api/cafes/:id", async (req, res) => {
 
-    try{
+// ================================
+// DELETE
+// ================================
 
-        await Cafe.findByIdAndDelete(req.params.id);
+app.delete("/api/cafes/:id", async (req, res, next) => {
 
-        res.json({ message: "Cafe Deleted" });
+    try {
+
+        const cafe =
+            await Cafe.findByIdAndDelete(
+                req.params.id
+            );
+
+
+        if (!cafe) {
+
+            return res.status(404).json({
+
+                message: "Cafe not found"
+
+            });
+
+        }
+
+
+        res.json({
+
+            message: "Cafe deleted successfully"
+
+        });
 
     }
 
-    catch(err){
+    catch (err) {
 
-        res.status(500).json({ message: err.message });
+        next(err);
 
     }
+
+});
+
+
+// ================================
+// ERROR HANDLING MIDDLEWARE
+// ================================
+
+app.use((err, req, res, next) => {
+
+    console.error(err);
+
+    res.status(500).json({
+
+        message: "Something went wrong",
+        error: err.message
+
+    });
+
+});
+
+
+// SERVER
+
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+
+    console.log(
+        `Server running at http://localhost:${PORT}`
+    );
 
 });
