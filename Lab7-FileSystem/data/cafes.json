@@ -5,5 +5,12 @@
     "location": "Dubai",
     "event": "Coding Meetup",
     "rating": 4.5
+  },
+  {
+    "id": 1787117321408,
+    "name": "Test lab7",
+    "location": "Bangalore",
+    "event": "Workshop",
+    "rating": 4.5
   }
 ]

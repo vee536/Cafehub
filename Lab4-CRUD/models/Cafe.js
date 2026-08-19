@@ -15,11 +15,6 @@ const CafeSchema = new mongoose.Schema({
     event: {
         type: String,
         required: true
-    },
-
-    rating: {
-        type: Number,
-        default: 4.5
     }
 
 });

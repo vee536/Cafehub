@@ -7,9 +7,6 @@ const Cafe = require("./models/Cafe");
 const app = express();
 
 
-// ================================
-// MIDDLEWARE
-// ================================
 
 app.use(cors());
 
@@ -19,10 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname));
 
-
-// ================================
-// MONGODB CONNECTION
-// ================================
 
 mongoose.connect("mongodb://127.0.0.1:27017/cafehub")
     .then(() => {
@@ -37,9 +30,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/cafehub")
     });
 
 
-// ================================
-// HOME PAGE
-// ================================
+
 
 app.get("/", (req, res) => {
 
@@ -50,9 +41,7 @@ app.get("/", (req, res) => {
 });
 
 
-// ================================
-// GET - READ
-// ================================
+
 
 app.get("/api/cafes", async (req, res, next) => {
 
@@ -95,9 +84,6 @@ app.get("/api/cafes", async (req, res, next) => {
 });
 
 
-// ================================
-// POST - CREATE
-// ================================
 
 app.post("/api/cafes", async (req, res, next) => {
 
@@ -119,10 +105,6 @@ app.post("/api/cafes", async (req, res, next) => {
 
 });
 
-
-// ================================
-// PUT - UPDATE
-// ================================
 
 app.put("/api/cafes/:id", async (req, res, next) => {
 
@@ -166,10 +148,6 @@ app.put("/api/cafes/:id", async (req, res, next) => {
 });
 
 
-// ================================
-// DELETE
-// ================================
-
 app.delete("/api/cafes/:id", async (req, res, next) => {
 
     try {
@@ -208,10 +186,6 @@ app.delete("/api/cafes/:id", async (req, res, next) => {
 });
 
 
-// ================================
-// ERROR HANDLING MIDDLEWARE
-// ================================
-
 app.use((err, req, res, next) => {
 
     console.error(err);
@@ -225,8 +199,6 @@ app.use((err, req, res, next) => {
 
 });
 
-
-// SERVER
 
 
 const PORT = 3000;

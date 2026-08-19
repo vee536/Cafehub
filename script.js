@@ -1,43 +1,51 @@
-
+// ========================================
 // EVENT REGISTRATION MODAL
-
+// ========================================
 
 function openModal() {
+
     document.getElementById("eventModal").style.display = "block";
+
 }
 
 function closeModal() {
+
     document.getElementById("eventModal").style.display = "none";
+
 }
 
 
+// ========================================
 // REGISTER EVENT
+// ========================================
 
-
-function registerEvent(eventName){
+function registerEvent(eventName) {
 
     document.getElementById("modalTitle").innerText =
-    "Successfully Registered!";
+        "Successfully Registered!";
 
     document.getElementById("modalText").innerText =
-    "You have joined " + eventName;
+        "You have joined " + eventName;
 
     openModal();
+
 }
 
+
+// ========================================
 // GEOLOCATION API
+// ========================================
 
-function getLocation(){
+function getLocation() {
 
-    if(navigator.geolocation){
+    if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition(
 
-            function(position){
+            function(position) {
 
-                document.getElementById("location").innerHTML =
+                document.getElementById("location").innerHTML = `
 
-                `
                 <h3>Your Current Location</h3>
 
                 <p>
@@ -52,21 +60,22 @@ function getLocation(){
                     Suggested Nearby Cafe:
                     <strong>The Roastery</strong>
                 </p>
+
                 `;
 
             },
 
-            function(error){
+            function(error) {
 
-                document.getElementById("location").innerHTML =
+                document.getElementById("location").innerHTML = `
 
-                `
                 <h3>Location Permission Denied</h3>
 
                 <p>
                     Please allow location access in your browser settings
                     and try again.
                 </p>
+
                 `;
 
             }
@@ -74,135 +83,210 @@ function getLocation(){
         );
 
     }
-    else{
+
+    else {
 
         document.getElementById("location").innerHTML =
-
-        `
-        Geolocation is not supported by this browser.
-        `;
+            "Geolocation is not supported by this browser.";
 
     }
 
 }
 
+
 // SIGNUP VALIDATION
 
 
-function validateSignup(){
+function validateSignup() {
 
     let password =
-    document.getElementById("password").value;
+        document.getElementById("password").value;
 
     let confirm =
-    document.getElementById("confirmPassword").value;
+        document.getElementById("confirmPassword").value;
 
-    if(password !== confirm){
+    if (password !== confirm) {
 
         alert("Passwords do not match!");
 
         return false;
+
     }
 
     alert("Account Created Successfully!");
 
     return true;
+
 }
 
 
-// SIGNIN VALIDATION
+// ========================================
+// USER REGISTRATION
+// ========================================
+
+const registerUser = () => {
+
+    const name =
+        document.getElementById("name").value;
+
+    const email =
+        document.getElementById("email").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    const dob =
+        document.getElementById("dob").value;
+
+    const profession =
+        document.getElementById("profession").value;
+
+    const photo =
+        document.getElementById("photo").files[0];
 
 
-function validateSignin(){
+    // Check whether all fields are filled
 
-    let email =
-    document.getElementById("email").value;
+    if (
+        name === "" ||
+        email === "" ||
+        password === "" ||
+        dob === "" ||
+        profession === "" ||
+        !photo
+    ) {
 
-    let password =
-    document.getElementById("signinPassword").value;
+        alert("Please fill all the fields.");
 
-    if(email === "" || password === ""){
+        return;
+
+    }
+
+
+    // Store registered user details in Local Storage
+
+    localStorage.setItem("Name", name);
+
+    localStorage.setItem("Email", email);
+
+    localStorage.setItem("Password", password);
+
+    localStorage.setItem("DOB", dob);
+
+    localStorage.setItem("Profession", profession);
+
+
+    // Read uploaded profile picture
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        document.getElementById("cardContainer").innerHTML = `
+
+        <div class="card">
+
+            <img src="${e.target.result}">
+
+            <h2>${name}</h2>
+
+            <p>
+                <strong>Email :</strong>
+                ${email}
+            </p>
+
+            <p>
+                <strong>Date of Birth :</strong>
+                ${dob}
+            </p>
+
+            <p>
+                <strong>Profession :</strong>
+                ${profession}
+            </p>
+
+        </div>
+
+        `;
+
+    };
+
+    reader.readAsDataURL(photo);
+
+
+    // Registration message
+
+    alert("Registration Successful!");
+
+};
+
+
+// ========================================
+// SIGN IN VALIDATION
+// ========================================
+
+function validateSignin() {
+
+    const email =
+        document.getElementById("email").value;
+
+    const password =
+        document.getElementById("signinPassword").value;
+
+
+    // Check empty fields
+
+    if (email === "" || password === "") {
 
         alert("Please fill all fields.");
 
         return false;
+
     }
 
-    alert("Welcome back!");
 
-    return true;
-}
-const registerUser = () => {
+    // Get registered credentials
 
-const name =
-document.getElementById("name").value;
+    const savedEmail =
+        localStorage.getItem("Email");
 
-const email =
-document.getElementById("email").value;
+    const savedPassword =
+        localStorage.getItem("Password");
 
-const password =
-document.getElementById("password").value;
 
-const dob =
-document.getElementById("dob").value;
+    // Check whether a user has registered
 
-const profession =
-document.getElementById("profession").value;
+    if (savedEmail === null || savedPassword === null) {
 
-const photo =
-document.getElementById("photo").files[0];
+        alert("No registered user found. Please register first!");
 
-if(
-name==="" ||
-email==="" ||
-password==="" ||
-dob==="" ||
-profession==="" ||
-!photo
-){
+        return false;
 
-alert("Please fill all the fields.");
+    }
 
-return;
 
-}
+    // Compare login details
 
-localStorage.setItem("Name",name);
+    if (
+        email === savedEmail &&
+        password === savedPassword
+    ) {
 
-localStorage.setItem("Email",email);
+        alert("Login Successful!");
 
-localStorage.setItem("DOB",dob);
+        // Redirect to CafeHub homepage
+        window.location.href = "../index.html";
 
-localStorage.setItem("Profession",profession);
+        return false;
 
-const reader = new FileReader();
+    }
 
-reader.onload = function(e){
+    else {
 
-document.getElementById("cardContainer").innerHTML=
+        alert("Invalid Email or Password!");
 
-`
+        return false;
 
-<div class="card">
-
-<img src="${e.target.result}">
-
-<h2>${name}</h2>
-
-<p><strong>Email :</strong> ${email}</p>
-
-<p><strong>Password :</strong> ${password}</p>
-
-<p><strong>Date of Birth :</strong> ${dob}</p>
-
-<p><strong>Profession :</strong> ${profession}</p>
-
-</div>
-
-`;
-
-};
-
-reader.readAsDataURL(photo);
+    }
 
 }

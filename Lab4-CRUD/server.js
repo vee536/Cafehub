@@ -6,10 +6,7 @@ const Cafe = require("./models/Cafe");
 
 const app = express();
 
-
-// ================================
-// MIDDLEWARE
-// ================================
+//middleware
 
 app.use(cors());
 
@@ -19,10 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname));
 
-
-// ================================
-// MONGODB CONNECTION
-// ================================
+//mongodb connection
 
 mongoose.connect("mongodb://127.0.0.1:27017/cafehub")
     .then(() => {

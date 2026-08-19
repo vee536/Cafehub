@@ -22,11 +22,6 @@ app.use(express.static(
 ));
 
 
-// HELPER FUNCTIONS
-
-
-// Read cafes from JSON file
-
 async function readCafes() {
 
     const data = await fs.readFile(
@@ -39,7 +34,6 @@ async function readCafes() {
 }
 
 
-// Write cafes to JSON file
 
 async function writeCafes(cafes) {
 
@@ -49,9 +43,6 @@ async function writeCafes(cafes) {
     );
 
 }
-
-
-// GET - READ
 
 
 app.get("/api/file-cafes", async (req, res) => {
@@ -75,7 +66,6 @@ app.get("/api/file-cafes", async (req, res) => {
 });
 
 
-// POST - CREATE
 
 app.post("/api/file-cafes", async (req, res) => {
 

@@ -7,15 +7,43 @@
 
 <title>Sign In | CafeHub</title>
 
+<link rel="stylesheet" href="../style.css">
 <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
-<body class="min-h-screen bg-cover bg-center flex items-center justify-center"
+<body>
 
-style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80');">
+<header>
 
-<div class="bg-white/90 backdrop-blur-lg p-10 rounded-3xl shadow-2xl w-full max-w-md">
+<h2>CafeHub</h2>
+
+<nav>
+
+<a href="../index.html">Home</a>
+<a href="../events.html">Events</a>
+<a href="../meetups.html">Meetups</a>
+<a href="../bookclubs.html">Book Clubs</a>
+<a href="../workshops.html">Workshops</a>
+<a href="../community.html">Community</a>
+<a href="registration.html">Registration</a>
+<a href="signin.html">Sign In</a>
+
+</nav>
+
+</header>
+
+<div
+class="flex justify-center items-center"
+style="
+min-height:80vh;
+background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+background-position:center;
+padding:50px;
+">
+
+<div class="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md">
 
 <h1 class="text-4xl font-bold text-center text-[#4B5136] mb-2">
 
@@ -25,7 +53,7 @@ CafeHub
 
 <p class="text-center text-gray-600 mb-8">
 
-Welcome back!
+Welcome Back!
 
 </p>
 
@@ -50,8 +78,7 @@ class="w-full p-3 border rounded-xl mb-6 focus:outline-none focus:ring-2 focus:r
 
 <button
 type="submit"
-class="w-full bg-[#6B4426] text-white py-3 rounded-xl hover:bg-[#553519] transition"
->
+class="w-full bg-[#6B4426] text-white py-3 rounded-xl hover:bg-[#553519] transition">
 
 Sign In
 
@@ -64,32 +91,38 @@ Sign In
 Don't have an account?
 
 <a
-href="signup.html"
-class="text-[#6B4426] font-semibold"
->
+href="registration.html"
+class="text-[#6B4426] font-semibold">
 
-Sign Up
+Register
 
 </a>
 
 </p>
 
-<div class="text-center mt-6">
+<p class="text-center mt-5">
 
 <a
-href="index.html"
-class="text-gray-500 hover:text-black"
->
+href="../index.html"
+class="text-gray-500 hover:text-black">
 
 ← Back to Home
 
 </a>
 
-</div>
+</p>
 
 </div>
 
-<script src="script.js"></script>
+</div>
+
+<footer>
+
+© 2026 CafeHub
+
+</footer>
+
+<script src="../script.js"></script>
 
 </body>
 
