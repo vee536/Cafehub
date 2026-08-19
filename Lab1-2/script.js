@@ -1,6 +1,4 @@
-// ========================================
-// EVENT REGISTRATION MODAL
-// ========================================
+
 
 function openModal() {
 
@@ -15,9 +13,6 @@ function closeModal() {
 }
 
 
-// ========================================
-// REGISTER EVENT
-// ========================================
 
 function registerEvent(eventName) {
 
@@ -120,9 +115,6 @@ function validateSignup() {
 }
 
 
-// ========================================
-// USER REGISTRATION
-// ========================================
 
 const registerUser = () => {
 
@@ -220,10 +212,6 @@ const registerUser = () => {
 
 };
 
-
-// ========================================
-// SIGN IN VALIDATION
-// ========================================
 
 function validateSignin() {
 
